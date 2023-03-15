@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  <h1>Vital Signs List</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Heart Rate</th>
+        <th>Blood Press</th>
+        <th>Resp Rate</th>
+        <th>Satur</th>
+        <th>Temp</th>
+      </tr>
+    </thead>
+    <tbody>
+                
+        
+      {% for vital_signs in vital_signs %}
+        <tr>          
+          <td>{{ vital_signs.measurement_date }}...</td>
+          <td>{{ vital_signs.heart_rate }}</td>
+          <td>{{ vital_signs.blood_pressure_systolic}}/{{vital_signs.blood_pressure_diastolic }}</td>
+          <td>{{ vital_signs.respiratory_rate }}</td>
+          <td>{{ vital_signs.oxygen_saturation}}</td>
+          <td>{{ vital_signs.temperature }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="5">No vital signs recorded.</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+  </table>
+  <a href="{% url 'patients:vital_signs_create' %}">Add Vital Signs</a>
+{% endblock %}
