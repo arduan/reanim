@@ -2,8 +2,8 @@
 {% block content %}
 
   <h1>Vital Signs List</h1>
-  <table>
-    <thead>
+<table class="table mt-5 table-bordered table-stripede table-hover">
+      <thead class="table-dark">
       <tr>
         <th>Date</th>
         <th>Heart Rate</th>
@@ -18,7 +18,7 @@
         
       {% for vital_signs in vital_signs %}
         <tr>          
-          <td>{{ vital_signs.measurement_date }}...</td>
+          <td>{{ vital_signs.measurement_date }}</td>
           <td>{{ vital_signs.heart_rate }}</td>
           <td>{{ vital_signs.blood_pressure_systolic}}/{{vital_signs.blood_pressure_diastolic }}</td>
           <td>{{ vital_signs.respiratory_rate }}</td>

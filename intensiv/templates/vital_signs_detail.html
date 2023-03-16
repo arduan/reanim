@@ -3,7 +3,7 @@
 
 {% block content %}
  
-    <h1>{{ object.patient }} Vital Signs</h1>
+    <h1>{{ patient_detail }} Vital Signs</h1>
     <table class="table mt-5 table-bordered table-stripede table-hover">
       <thead class=table-dark>
         <tr>
@@ -17,20 +17,22 @@
       </thead>
       <tbody>
           
-      {% for vital_signs in object.vitalsigns_set.all %}
-      <tr>          
+      {% for vital_signs in patient_detail.vitalsigns_set.all %}
+      <tr>
         <td>{{ vital_signs.measurement_date }}</td>
         <td>{{ vital_signs.temperature }}</td>
         <td>{{ vital_signs.blood_pressure_systolic}}/{{vital_signs.blood_pressure_diastolic }}</td>
         <td>{{ vital_signs.heart_rate }}</td>
         <td>{{ vital_signs.respiratory_rate }}</td>
         <td>{{ vital_signs.oxygen_saturation }}</td>
+
       </tr>
-    {% empty %}
+      {% empty %}
       <tr>
         <td colspan="6">No vital signs recorded.</td>
       </tr>
-    {% endfor %}
+      {% endfor %}
+
       </tbody>
     </table>
   

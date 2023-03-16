@@ -2,19 +2,25 @@ from django.db import models
 from django.utils import timezone
 from django.urls import reverse
 
+
 class Patient(models.Model):
     name = models.CharField(max_length=255)
     age = models.PositiveIntegerField()
     gender = models.CharField(max_length=3)
-    address= models.CharField(max_length=255, default="")
-    phone = models.PositiveIntegerField(max_length=11)
+    address = models.CharField(max_length=255, default="")
+    phone = models.PositiveIntegerField()
     date_in = models.DateTimeField(default=timezone.now)
 
     def get_absolute_url(self):
-        return reverse('patient_detail', args=[str(self.pk)])
-    
+        """
+        Здесь мы используем функцию reverse() для генерации URL для представления
+        patient_detail, которое должно принимать параметр pk.
+        """
+        return reverse('patient_detail',  kwargs={'pk': self.pk})
+
     def __str__(self) -> str:
         return self.name
+
 
 class VitalSigns(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)
@@ -25,14 +31,6 @@ class VitalSigns(models.Model):
     blood_pressure_diastolic = models.PositiveIntegerField()
     oxygen_saturation = models.PositiveIntegerField()
     measurement_date = models.DateTimeField(default=timezone.now)
-
-    def get_absolute_url(self):
-        """
-        Здесь reverse используется для создания URL-адреса на основе имени 
-        представления patient_detail и передачи ему значения первичного 
-        ключа (self.pk) в качестве аргумента.
-        """
-        return reverse('patient_detail', args=[str(self.pk)])
 
     def __str__(self):
         return self.patient.name

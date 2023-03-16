@@ -20,7 +20,7 @@
         <tr>
           <td>{{ patient.id }}</td>
           <td>{{ patient.date_in }}</td>
-          <td> <a href="{% url 'patients:vital_signs_detail' pk=patient.pk %}">{{patient.name}}</a></td>
+          <td> <a href="{% url 'patients:patient_detail' pk=patient.pk %}">{{patient.name}}</a></td>
           <td>{{ patient.age }}</td>
           <td>{{ patient.gender }}</td>
           <td>{{ patient.address }}</td>

@@ -7,7 +7,7 @@ from django.views.generic import ListView
 class PatientListView(ListView):
     model = Patient
     template_name = 'patient_list.html'
-    context_object_name = 'patien_list'
+    context_object_name = 'patient_list'
 
 class VitalSignsListView(ListView):
     """
@@ -20,14 +20,14 @@ class VitalSignsListView(ListView):
     context_object_name = 'vital_signs'
 
 
-class VitalSignsDetailView(DetailView):
+class PatientDetailView(DetailView):
     """
-    VitalSignsDetailView - отображение деталей записи о витальных функциях. 
+    Отображение деталей записи о витальных функциях пациента.
     model, template_name и context_object_name определены так же, как и в VitalSignsListView.
     """
-    model = VitalSigns
+    model = Patient
     template_name = 'vital_signs_detail.html'
-    context_object_name = 'vital_signs'
+    context_object_name = 'patient_detail'
 
 
 class VitalSignsCreateView(CreateView):
