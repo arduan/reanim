@@ -2,8 +2,8 @@
 
 {% block content %}
   <h1>List of Patients</h1>
-  <table>
-    <thead>
+  <table class="table mt-5 table-bordered table-stripede table-hover">
+      <thead class="table-dark">
       <tr>
         <th>ID</th>
         <th>Date</th>
@@ -19,7 +19,7 @@
       {% for patient in object_list %}
         <tr>
           <td>{{ patient.id }}</td>
-          <td>{{ patient.date_in }}...</td>
+          <td>{{ patient.date_in }}</td>
           <td> <a href="{% url 'patients:vital_signs_detail' pk=patient.pk %}">{{patient.name}}</a></td>
           <td>{{ patient.age }}</td>
           <td>{{ patient.gender }}</td>

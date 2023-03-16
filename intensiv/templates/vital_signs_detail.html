@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
+
 {% block content %}
-  <div class="container">
+ 
     <h1>{{ object.patient }} Vital Signs</h1>
-    <table class="table table-striped">
-      <thead>
+    <table class="table mt-5 table-bordered table-stripede table-hover">
+      <thead class=table-dark>
         <tr>
           <th>Measurement Time</th>
           <th>Temperature (C)</th>
@@ -32,5 +33,5 @@
     {% endfor %}
       </tbody>
     </table>
-  </div>
+  
 {% endblock %}
