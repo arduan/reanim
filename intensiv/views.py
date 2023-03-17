@@ -9,6 +9,7 @@ class PatientListView(ListView):
     template_name = 'patient_list.html'
     context_object_name = 'patient_list'
 
+
 class VitalSignsListView(ListView):
     """
     VitalSignsListView - отображение списка всех записей о витальных функциях. 
