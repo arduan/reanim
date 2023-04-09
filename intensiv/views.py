@@ -1,7 +1,8 @@
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, FormView
 from django.urls import reverse_lazy
 from .models import VitalSigns, Patient
 from django.views.generic import ListView
+from .forms import PatientForm
 
 
 class PatientListView(ListView):
@@ -62,3 +63,23 @@ class VitalSignsDeleteView(DeleteView):
     model = VitalSigns
     template_name = 'vital_signs_confirm_delete.html'
     success_url = reverse_lazy('vital_signs_list')
+
+
+class PatientListFormView(FormView):
+    template_name = 'patient_list.html'
+    form_class = PatientForm
+
+    def form_valid(self, form):
+        last_name = form.cleaned_data.get('last_name')
+        first_name = form.cleaned_data.get('first_name')
+        gender = form.cleaned_data.get('gender')
+        patients = Patient.objects.filter(
+            last_name__icontains=last_name,
+            first_name__icontains=first_name,
+            gender=gender,
+        )
+        context = {
+            'form': form,
+            'patients': patients,
+        }
+        return self.render_to_response(context)
