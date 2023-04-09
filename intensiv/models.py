@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import CharField
 from django.utils import timezone
 from django.urls import reverse
 
@@ -18,7 +19,7 @@ class Patient(models.Model):
         """
         return reverse('patient_detail',  kwargs={'pk': self.pk})
 
-    def __str__(self) -> str:
+    def __str__(self) -> CharField:
         return self.name
 
 
